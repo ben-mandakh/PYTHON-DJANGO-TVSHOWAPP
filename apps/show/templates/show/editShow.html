@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a New Show</title>
+    <style>
+        body{
+            margin-left: 250px;
+            margin-top: 45px;
+        }
+        a{
+            margin-left: 330px;
+        }
+    
+    </style>
+</head>
+<body>
+    <a href="/">Go back</a>
+    <h1>Edit Show {{shows.id}}</h1>
+    <form action="/shows/{{shows.id}}/update" method="POST">
+        {% csrf_token %}
+        {% if messages %}
+        <ul class="messages">
+            <!-- {% for message in messages %} -->
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <!-- {% endfor %} -->
+        </ul>
+        {% endif %}
+    <label for="input">Title</label> <br>
+    <input type="text" name="title"> <br> <br>
+    <label for="input">Network</label> <br>
+    <input type="text" name="network">
+    Release date<input type="text" name="release_date"><br> <br>
+    <label for="input">Description</label> <br>
+    <input type="text" name="desc"> <br><br>
+    <button type="submit"> Update</button>
+    </form>
+    <br><br>
+    <a href="/shows">Go to Show</a>
+</body>
+</html>
